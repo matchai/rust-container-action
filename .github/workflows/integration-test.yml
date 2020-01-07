@@ -1,0 +1,14 @@
+name: Integration Test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Self test
+        id: selftest
+
+        uses: matchai/rust-container-action@master
+
+      - name: Check outputs
+        run: test "${{ steps.selftest.outputs.myOutput }}" == "Hello world"
