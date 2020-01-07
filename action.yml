@@ -6,6 +6,10 @@ inputs:
     required: true
     description: 'Input to use'
     default: 'world'
+  anotherInput:
+    required: false
+    description: 'Another input to use'
+    default: 'world'
 runs:
   using: 'docker'
   image: 'Dockerfile'
