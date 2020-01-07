@@ -9,6 +9,6 @@ RUN cargo build --target x86_64-unknown-linux-musl --release
 
 FROM gcr.io/distroless/static
 
-COPY --from=builder /app/target/release/app /app
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/app /app
 
 ENTRYPOINT [ "/app" ]
