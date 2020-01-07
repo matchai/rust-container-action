@@ -1,7 +1,14 @@
-FROM alpine:3.10
+FROM rust:latest as builder
 
-COPY LICENSE README.md /
+WORKDIR /app
+COPY . /app
 
-COPY entrypoint.sh /entrypoint.sh
+# Statically compile to allow for use in a distroless container
+RUN rustup target add x86_64-unknown-linux-musl
+RUN cargo build --target x86_64-unknown-linux-musl --release
 
-ENTRYPOINT ["/entrypoint.sh"]
+FROM gcr.io/distroless/static
+
+COPY --from=builder /app/target/release/app /app
+
+ENTRYPOINT [ "/app" ]

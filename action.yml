@@ -1,12 +1,11 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: 'Rust Container Action Template'
+description: 'Get started with Rust Container actions'
+author: 'Matan Kushner'
 inputs: 
   myInput:
+    required: true
     description: 'Input to use'
     default: 'world'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
