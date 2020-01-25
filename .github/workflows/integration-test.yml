@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        
       - name: Self test
         id: selftest
-
         uses: matchai/rust-container-action@master
 
       - name: Check outputs
